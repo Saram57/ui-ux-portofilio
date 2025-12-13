@@ -11,12 +11,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <style>
-    
+    /* الإعدادات العامة هي نفسها */
     * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
     html { scroll-behavior: smooth; }
     body {background: #0b0b0b; color: white; overflow-x: hidden; line-height: 1.6; cursor: default;}
 
-   
     canvas.bg-canvas {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       z-index: -2; pointer-events: none;
@@ -48,7 +47,6 @@
       align-items: center; padding: 120px 8% 60px 8%; position: relative; z-index: 10;
       gap: 40px;
     }
-    
     .hero-text { flex: 1.2; position: relative; z-index: 20; }
     .hero-text h1 {font-size: clamp(36px, 7vw, 75px); line-height: 1.1; margin-bottom: 20px; font-weight: 800;}
     .hero-text h1 span {display: block; background: linear-gradient(90deg,#ff72ff,#6a97ff); -webkit-background-clip: text; color: transparent;}
@@ -61,7 +59,6 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: none; cursor: pointer;
       font-size: 15px;
     }
-
     .btn:hover { transform: translateY(-5px); background: #6a97ff; color: white; box-shadow: 0 15px 35px rgba(106,151,255,0.4); }
 
     .hero-img { flex: 0.8; display: flex; justify-content: flex-end; position: relative; z-index: 5; }
@@ -72,6 +69,34 @@
     .section h2 {font-size: clamp(28px, 5vw, 42px); margin-bottom: 50px; text-align: left; position: relative; font-weight: 700;}
     .section h2::after {content: ''; position: absolute; bottom: -10px; left: 0; width: 60px; height: 4px; background: #6a97ff; border-radius: 2px;}
 
+    /* --- ABOUT SECTION STYLES --- */
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .about-content p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 25px;
+      max-width: 600px;
+    }
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .highlight-item {
+      background: rgba(255,255,255,0.03);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+    .highlight-item h4 { font-size: 24px; color: #6a97ff; margin-bottom: 5px; }
+    .highlight-item span { font-size: 13px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+
     /* Skills & Projects Grid */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
     .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
@@ -80,7 +105,6 @@
       background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 25px; 
       border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); transition: 0.3s;
     }
-
     .skill-box:hover { border-color: rgba(106,151,255,0.4); background: rgba(255, 255, 255, 0.05); }
     .skill-box i {font-size: 40px; color: #6a97ff; margin-bottom: 20px; display: block;}
     .skill-box h3 { font-size: 22px; margin-bottom: 10px; }
@@ -97,49 +121,21 @@
     .contact { text-align: center; }
     .contact h2 { text-align: center; }
     .contact h2::after { left: 50%; transform: translateX(-50%); }
-    .contact p { color: #ccc; font-size: 18px; margin-bottom: 20px; }
     .social { margin-top: 30px; }
     .social a { font-size: 28px; margin: 0 15px; color: white; transition: 0.4s; display: inline-block; text-decoration: none; }
     .social a:hover { transform: translateY(-8px) scale(1.1); color: #6a97ff; }
 
-    /* --- RESPONSIVE ADJUSTMENTS --- */
-
     @media (max-width: 1024px) {
-      header, .hero, .section { padding-left: 5%; padding-right: 5%; }
-      .hero { gap: 20px; }
+      .about-container { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
       header { padding: 15px 5%; justify-content: center; flex-direction: column; gap: 10px; }
-      header h2 { font-size: 22px; }
-      nav a { margin: 0 10px; font-size: 13px; }
-
-      .hero {
-        flex-direction: column-reverse;
-        justify-content: center;
-        text-align: center;
-        padding-top: 150px;
-        padding-bottom: 80px;
-      }
-
-      .hero-text { width: 100%; }
+      .hero { flex-direction: column-reverse; text-align: center; padding-top: 150px; }
       .hero-text p { margin-left: auto; margin-right: auto; }
       .hero-img { justify-content: center; width: 100%; }
-      .hero-img img { max-width: 320px; }
-
-      .section { padding-top: 80px; padding-bottom: 80px; }
-      .section h2 { text-align: center; margin-bottom: 40px; }
+      .section h2 { text-align: center; }
       .section h2::after { left: 50%; transform: translateX(-50%); }
-      
-      .portfolio-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-text h1 { font-size: 38px; }
-      .hero-img img { max-width: 260px; }
-      .skill-box { padding: 30px 20px; }
-      .project { height: 300px; }
-      nav a { margin: 0 7px; font-size: 12px; }
     }
   </style>
 </head>
@@ -153,6 +149,7 @@
 <header>
   <h2>SARA.</h2>
   <nav>
+    <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#portfolio">Work</a>
     <a href="#contact">Contact</a>
@@ -167,7 +164,44 @@
   </div>
 
   <div class="hero-img hero-reveal">
-    <img src="./WhatsApp_Image_2025-07-04_at_14.25.22_f1355e5c-removebg-preview.png" alt="Sara Maher" />
+    <img src="../WhatsApp_Image_2025-07-04_at_14.25.22_f1355e5c-removebg-preview.png" alt="Sara Maher" />
+  </div>
+</section>
+
+<section id="about" class="section">
+  <h2 class="scroll-reveal">About Me</h2>
+  <div class="about-container">
+    <div class="about-content scroll-reveal">
+      <p>
+        I am a passionate UI/UX Designer dedicated to crafting digital stories that are not only visually stunning but also deeply intuitive. With a focus on <b>User-Centered Design</b>, I bridge the gap between complex functionality and seamless user experience.
+      </p>
+      <p>
+        My journey is driven by curiosity and the desire to solve real-world problems through design thinking. Whether it's a mobile app or a complex dashboard, I aim for pixel-perfection and meaningful interaction.
+      </p>
+    </div>
+    
+    <div class="about-highlights scroll-reveal">
+      <div class="highlight-item" style="border-left: 3px solid #6a97ff;">
+        <i class="fa-solid fa-heart" style="margin-bottom: 10px; color: #ff72ff;"></i>
+        <h4>Empathy</h4>
+        <span>Putting the user's needs at the heart of every decision.</span>
+      </div>
+      <div class="highlight-item" style="border-left: 3px solid #6a97ff;">
+        <i class="fa-solid fa-lightbulb" style="margin-bottom: 10px; color: #ffce6a;"></i>
+        <h4>Innovation</h4>
+        <span>Finding creative solutions for complex technical problems.</span>
+      </div>
+      <div class="highlight-item" style="border-left: 3px solid #6a97ff;">
+        <i class="fa-solid fa-layer-group" style="margin-bottom: 10px; color: #6a97ff;"></i>
+        <h4>Simplicity</h4>
+        <span>Removing the noise to focus on what truly matters.</span>
+      </div>
+      <div class="highlight-item" style="border-left: 3px solid #6a97ff;">
+        <i class="fa-solid fa-arrows-to-dot" style="margin-bottom: 10px; color: #00ffcc;"></i>
+        <h4>Precision</h4>
+        <span>Obsessing over every pixel to ensure a high-quality finish.</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -196,15 +230,15 @@
   <h2 class="scroll-reveal">Featured Work</h2>
   <div class="portfolio-grid">
     <div class="project scroll-reveal" data-tilt>
-        <img src="./01-Preview.__large_preview.jpg" alt="Work 1">
+        <img src="../01-Preview.__large_preview.jpg" alt="Work 1">
         <div class="overlay"><h3>Mobile App UX</h3></div>
     </div>
     <div class="project scroll-reveal" data-tilt>
-        <img src="./179_1675948994.png" alt="Work 2">
+        <img src="../179_1675948994.png" alt="Work 2">
         <div class="overlay"><h3>Dashboard UI</h3></div>
     </div>
     <div class="project scroll-reveal" data-tilt>
-        <img src="./663894c8f9e96552ced7d672_what-is-a-responsive-website.png" alt="Work 3">
+        <img src="../663894c8f9e96552ced7d672_what-is-a-responsive-website.png" alt="Work 3">
         <div class="overlay"><h3>Landing Page</h3></div>
     </div>
   </div>
@@ -223,12 +257,10 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-
   gsap.from(".hero-reveal", {
     y: 60, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power4.out", clearProps: "all"
   });
 
-  
   gsap.utils.toArray('.scroll-reveal').forEach(el => {
     gsap.from(el, {
       scrollTrigger: { 
@@ -240,7 +272,6 @@
     });
   });
 
-
   if (window.innerWidth > 1024) {
     document.addEventListener("mousemove", (e) => {
       const x = (window.innerWidth / 2 - e.clientX) / 50;
@@ -249,14 +280,12 @@
     });
   }
 
- 
   if (window.innerWidth > 768) {
     VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
       max: 10, speed: 400, glare: true, "max-glare": 0.1,
     });
   }
 
-  
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.classList.add('bg-canvas');
@@ -293,7 +322,6 @@
       ctx.lineWidth = 1;
       ctx.stroke();
       
-      
       if(l.x < -100) l.x = W + 100;
       if(l.x > W + 100) l.x = -100;
       if(l.y < -100) l.y = H + 100;
@@ -305,5 +333,4 @@
 </script>
 
 </body>
-
 </html>
